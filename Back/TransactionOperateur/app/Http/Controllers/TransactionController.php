@@ -99,26 +99,27 @@ class TransactionController extends Controller
             $expediteur =Compte::find($compte_expediteur);
             $destinataire = Compte::find($compte_destinataire);
 
-            if($compte_destinataire->numero_compte === $compte_expediteur->numero_compte){
+            if($destinataire->numero_compte === $expediteur->numero_compte){
                 return error_log('gfhjkjhgfdghjkjhg');
             }
 
-            $opDestinataire=explode('_',$compte_destinataire->numero_compte);
-            $opExpediteur = explode('_',$compte_expediteur->numero_compte);
+            $opDestinataire=explode('_',$destinataire->numero_compte);
+            $opExpediteur = explode('_',$expediteur->numero_compte);
 
-            if($opDestinataire[0]!==$opExpediteur[0]){
-                return error_log('gfhjkjhgfdghjkjhg');
-            }
+            // if($opDestinataire[0]!==$opExpediteur[0]){
+            //     return error_log('gfhjkjhgfdghjkjhg');
+            // }
 
             $recupClientId = Client::where('numero',$opExpediteur[1])->first();
 
 
+            // return $recupClientId;
             $transaction = Transaction::create([
-                'client_id' => $recupClientId,
+                'client_id' => $recupClientId->id,
                 'montant' => $montant,
                 'typeTransfer' => 'transfer',
                 'operateur' => $operateur,
-                'compte_id' => $destinataire,
+                'compte_id' => $compte_destinataire,
             ]);
 
             return $transaction;
