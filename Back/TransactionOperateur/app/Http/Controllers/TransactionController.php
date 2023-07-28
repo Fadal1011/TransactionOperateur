@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
+use App\Models\Client;
 use App\Models\Compte;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,11 +28,6 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
 
     public function store(Request $request)
     {
@@ -74,7 +70,7 @@ class TransactionController extends Controller
                 ]);
 
             });
-            
+
             return $transaction;
 
         } catch (ValidationException $e) {
@@ -86,26 +82,47 @@ class TransactionController extends Controller
     }
 
 
-    public function show(Transaction $transaction)
-    {
-        //
+    public function transfer(Request $request){
+        $request->validate([
+            'expediteur' => "required",
+            'montant' => "required|numeric|gt:500",
+            'operateur' => "required"
+        ], [
+            'montant.gt' => 'Le montant doit être supérieur à 500.',
+        ]);
+
+            $compte_expediteur = $request->expediteur;
+            $montant = $request->montant;
+            $compte_destinataire = $request->destinataire;
+            $operateur = $request->operateur;
+
+            $expediteur =Compte::find($compte_expediteur);
+            $destinataire = Compte::find($compte_destinataire);
+
+            if($compte_destinataire->numero_compte === $compte_expediteur->numero_compte){
+                return error_log('gfhjkjhgfdghjkjhg');
+            }
+
+            $opDestinataire=explode('_',$compte_destinataire->numero_compte);
+            $opExpediteur = explode('_',$compte_expediteur->numero_compte);
+
+            if($opDestinataire[0]!==$opExpediteur[0]){
+                return error_log('gfhjkjhgfdghjkjhg');
+            }
+
+            $recupClientId = Client::where('numero',$opExpediteur[1])->first();
+
+
+            $transaction = Transaction::create([
+                'client_id' => $recupClientId,
+                'montant' => $montant,
+                'typeTransfer' => 'transfer',
+                'operateur' => $operateur,
+                'compte_id' => $destinataire,
+            ]);
+
+            return $transaction;
+
     }
 
-
-    public function edit(Transaction $transaction)
-    {
-        //
-    }
-
-
-    public function update(UpdateTransactionRequest $request, Transaction $transaction)
-    {
-        //
-    }
-
-
-    public function destroy(Transaction $transaction)
-    {
-        //
-    }
 }
