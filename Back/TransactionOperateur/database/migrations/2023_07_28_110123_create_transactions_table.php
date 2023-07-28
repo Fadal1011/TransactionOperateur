@@ -24,6 +24,8 @@ return new class extends Migration
             $table->enum('operateur',['Orange money','Wave','Wari','CB']);
             $table->unsignedBigInteger('compte_id')->nullable();
             $table->foreign('compte_id')->references('id')->on('comptes')->onDelete('cascade');
+            $table->string('code_genere')->unique()->nullable();
+            $table->boolean('code')->default(false);
             $table->enum('genreTransac',['code','sans code','permenant','immediate'])->nullable();
             $table->timestamps();
         });

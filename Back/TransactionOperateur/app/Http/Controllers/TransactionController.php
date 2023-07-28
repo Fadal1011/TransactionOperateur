@@ -95,6 +95,14 @@ class TransactionController extends Controller
             $montant = $request->montant;
             $compte_destinataire = $request->destinataire;
             $operateur = $request->operateur;
+            $codeu_genere = '';
+
+            $expediteur =Compte::find($compte_expediteur);
+            $destinataire = Compte::find($compte_destinataire);
+
+            if($compte_destinataire){
+
+            }
 
             $expediteur =Compte::find($compte_expediteur);
             $destinataire = Compte::find($compte_destinataire);
@@ -106,20 +114,20 @@ class TransactionController extends Controller
             $opDestinataire=explode('_',$destinataire->numero_compte);
             $opExpediteur = explode('_',$expediteur->numero_compte);
 
-            // if($opDestinataire[0]!==$opExpediteur[0]){
-            //     return error_log('gfhjkjhgfdghjkjhg');
-            // }
+            if($opDestinataire[0]!==$opExpediteur[0]){
+                return error_log('gfhjkjhgfdghjkjhg');
+            }
 
             $recupClientId = Client::where('numero',$opExpediteur[1])->first();
 
 
-            // return $recupClientId;
             $transaction = Transaction::create([
                 'client_id' => $recupClientId->id,
                 'montant' => $montant,
                 'typeTransfer' => 'transfer',
                 'operateur' => $operateur,
                 'compte_id' => $compte_destinataire,
+                'code'=>$code
             ]);
 
             return $transaction;
