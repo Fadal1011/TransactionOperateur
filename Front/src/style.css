@@ -1,9 +1,12 @@
 body{
-    background: rgb(66, 66, 66);
+    background: linear-gradient(rgba(0, 0, 0, 0.507),black),url('../image/payment-g94aac4193_1280.jpg');
+    background-position: center;
+    background-size: cover;
+
 }
 
 html{
-    font-size: 65%;
+    font-size: 66%;
 }
 
 
@@ -11,7 +14,16 @@ html{
     width: 40rem;
     margin: auto;
     margin-top: 3rem;
-    background: rgb(213, 213, 213);
+    background: rgba(213, 213, 213, 0.483);
+    backdrop-filter: blur(1);
     border-radius: .5rem;
-    padding: 2rem;
+    padding: 2rem;  margin-bottom: 3rem;
+    color: white;
+}
+
+.title{
+    color: brown;
+    font-size: 3rem;
+    text-align: center;
+    text-decoration: underline;
 }

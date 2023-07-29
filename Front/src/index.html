@@ -9,13 +9,13 @@
 </head>
 <body>
     <form class="row g-3 form">
-        <h1>Breukh Transfer</h1>
+        <h1 class="title">Breukh Transfer</h1>
         <!-- Expediteur start -->
-        <h2>Expediteur</h2>
+        <h2 class="couleurEnfonctiondufourn">Expediteur</h2>
         <hr>
         <div class="col-md-6">
           <label for="telExpediteur" class="form-label">N°Compte/tel</label>
-          <input type="text" class="form-control" id="telExpediteur">
+          <input type="text" class="form-control" id="telExpediteur" name="telExpediteur">
         </div>
         <div class="col-md-6">
           <label for="nomCompletExpediteur" class="form-label">Nom complet</label>
@@ -29,18 +29,18 @@
         <hr>
         <div class="col-12">
           <label for="Montant" class="form-label">Montant</label>
-          <input type="number" class="form-control" id="Montant">
+          <input type="number" class="form-control" id="Montant" name="montant">
         </div>
 
         <div class="col-md-6">
             <label for="Fournisseur" class="form-label">Fournisseur</label>
-            <select class="form-select" aria-label="Default select example" id="Fournisseur">
+            <select class="form-select" aria-label="Default select example" id="Fournisseur" name="Fournisseur">
                 <option selected></option>
             </select>
           </div>
           <div class="col-md-6">
             <label for="Transaction" class="form-label">Transaction</label>
-            <select class="form-select" aria-label="Default select example" id="Transaction">
+            <select class="form-select" aria-label="Default select example" id="Transaction" name="Transaction">
                 <option selected></option>
             </select>
           </div>
@@ -48,11 +48,11 @@
 
         <!-- Montant end -->
           <!-- Destinataire start -->
-          <h2>Destinataire</h2>
+          <h2 class="ilChangeParRetrait">Destinataire</h2>
           <hr>
           <div class="col-md-6">
             <label for="teldestinataire" class="form-label">N°Compte/tel</label>
-            <input type="text" class="form-control" id="teldestinataire">
+            <input type="text" class="form-control" id="teldestinataire" name="teldestinataire">
           </div>
           <div class="col-md-6">
             <label for="nomCompletdestinataire" class="form-label">Nom complet</label>
@@ -60,7 +60,7 @@
           </div>
           <!-- destinataire end -->
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Valider</button>
+          <button type="button" class="btn btn-primary" id="valider">Valider</button>
         </div>
       </form>
 

@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-
+Route::get('/client',[TransactionController::class,'index']);
 Route::apiResource('/transactions',TransactionController::class)->only('store');
 Route::post('/transfer',[TransactionController::class,'transfer']);
 
