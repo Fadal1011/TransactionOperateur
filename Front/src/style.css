@@ -1,0 +1,17 @@
+body{
+    background: rgb(66, 66, 66);
+}
+
+html{
+    font-size: 65%;
+}
+
+
+.form{
+    width: 40rem;
+    margin: auto;
+    margin-top: 3rem;
+    background: rgb(213, 213, 213);
+    border-radius: .5rem;
+    padding: 2rem;
+}
